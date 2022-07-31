@@ -1,4 +1,10 @@
-UNX511 -- Assignment 1: A Network Monitor
+UNX511 -- Assignment 1: A Network Monitor  
+
+
+**To compile and run:**  
+```bash
+make all && sudo ./networkMon
+```
 
 **[Business Case] (Marketing, Project Manager, Senior Executives)**
 
