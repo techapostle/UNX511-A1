@@ -1,30 +1,31 @@
 /* ╭──────────────────────────────────╮
-*  │ Name: Kian Dadkhah Shokrollahi   │
-*  │ SID: 119369205                   │
-*  │ UNX511 Assignment 1              │
-*  ╰──────────────────────────────────╯
-*/
+ *  │ Name: Kian Dadkhah Shokrollahi   │
+ *  │ SID: 119369205                   │
+ *  │ UNX511 Assignment 1              │
+ *  ╰──────────────────────────────────╯
+ */
 
 /* --- Network Interface Monitor: Network ---
- * This unit contains the main function of the Network Monitor portion of the assignment.
-*/
+ * This unit contains the main function of the Network Monitor portion of the
+ * assignment.
+ */
 
 // STL
 #include <cstdio>
 #include <iostream>
 #include <string>
 // Linux Libraries
+#include <signal.h>
 #include <sys/socket.h>
 #include <sys/un.h>
 #include <sys/wait.h>
-#include <signal.h>
 #include <unistd.h>
 // Project Libraries
 #include "utils.cpp"
 
 int main() {
   struct sockaddr_un addr; // Create a socket for inter-process communication.
-  int numInterfaces = 1; // Default number of interfaces
+  int numInterfaces = 1;   // Default number of interfaces
   int numClients = 0;
   std::string *interfaces = nullptr; // String holding names of interfaces
   char buffer[BUFFER_SIZE];
@@ -48,9 +49,11 @@ int main() {
     exit(-1);
   }
   addr.sun_family = AF_UNIX;
-  strncpy(addr.sun_path, SOCKET_PATH, sizeof(addr.sun_path)-1); // Set socket path as defined in socket_path
+  strncpy(addr.sun_path, SOCKET_PATH,
+          sizeof(addr.sun_path) -
+              1); // Set socket path as defined in socket_path
   unlink(SOCKET_PATH);
-  if (bind(master_fd, (struct sockaddr*)&addr, sizeof(addr)) == -1) {
+  if (bind(master_fd, (struct sockaddr *)&addr, sizeof(addr)) == -1) {
     std::cout << "Server: " << strerror(errno) << std::endl;
     close(master_fd);
     exit(-1);
@@ -60,7 +63,7 @@ int main() {
   std::cin >> numInterfaces;
   interfaces = new std::string[numInterfaces];
   for (int i = 0; i < numInterfaces; i++) {
-    std::cout << "\nInterface " << i+1 << " name: ";
+    std::cout << "\nInterface " << i + 1 << " name: ";
     std::cin >> interfaces[i];
   }
 
@@ -83,11 +86,12 @@ int main() {
       FD_ZERO(&read_fd_set);
       FD_ZERO(&active_fd_set);
       FD_SET(master_fd, &active_fd_set); // Add master_fd to socket set
-      max_fd = master_fd; // Select from max_fd sockets
+      max_fd = master_fd;                // Select from max_fd sockets
       nimutils::terminate_NM = false;
       while (!nimutils::terminate_NM) {
         read_fd_set = active_fd_set; // Block until an input arrives on a socket
-        ret = select(max_fd+1, &read_fd_set, NULL, NULL, NULL); // Select from up to max_fd+1 sockets
+        ret = select(max_fd + 1, &read_fd_set, NULL, NULL,
+                     NULL); // Select from up to max_fd+1 sockets
         if (ret < 0) {
           std::cout << "Network Monitor: " << strerror(errno) << std::endl;
           // nimutils::terminate = true;
@@ -99,27 +103,30 @@ int main() {
               // nimutils::terminate = true;
             } else {
               std::cout << "Network Monitor: incoming connection "
-                << clients[numClients] << std::endl;
+                        << clients[numClients] << std::endl;
               ret = read(clients[numClients], buffer, BUFFER_SIZE);
-              std::cout << "Received message from Interface Monitor: " << buffer << std::endl;
+              std::cout << "Received message from Interface Monitor: " << buffer
+                        << std::endl;
               len = sprintf(buffer, "Monitor") + 1;
               ret = write(clients[numClients], buffer, BUFFER_SIZE);
               if (ret == -1) {
                 std::cout << "Network Monitor: Write Error\n"
-                  << strerror(errno) << std::endl;
+                          << strerror(errno) << std::endl;
               }
-              if (max_fd < clients[numClients]) max_fd = clients[numClients];
+              if (max_fd < clients[numClients])
+                max_fd = clients[numClients];
               ++numClients;
             }
           } else {
             for (int i = 0; i < numClients; ++i) {
               if (FD_ISSET(clients[i], &read_fd_set)) {
                 bzero(buffer, BUFFER_SIZE);
-                ret = read(clients[i], buffer, BUFFER_SIZE); // Read data from clients[i]
+                ret = read(clients[i], buffer,
+                           BUFFER_SIZE); // Read data from clients[i]
                 std::cout << buffer;
                 if (ret == -1) {
                   std::cout << "Network Monitor: Read Error\n"
-                    << strerror(errno) << std::endl;
+                            << strerror(errno) << std::endl;
                 }
               }
             }
@@ -129,12 +136,13 @@ int main() {
       }
 
       for (int i = 0; i < numClients; ++i) {
-        std::cout << "Network Monitor: Requesting Client " << i+1 << " to quit." << std::endl;
+        std::cout << "Network Monitor: Requesting Client " << i + 1
+                  << " to quit." << std::endl;
         len = sprintf(buffer, "Quit") + 1;
         ret = write(clients[i], buffer, len);
         if (ret == -1) {
           std::cout << "Network Monitor: Write Error\n"
-            << strerror(errno) << std::endl;
+                    << strerror(errno) << std::endl;
         }
         sleep(1);
         FD_CLR(clients[i], &active_fd_set);
@@ -142,7 +150,8 @@ int main() {
       }
 
       // Wait for all responses to end
-      while (wait(NULL) > 0);
+      while (wait(NULL) > 0)
+        ;
       // Close master socket
       close(master_fd);
       // Remove socket file
