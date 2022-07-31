@@ -2,7 +2,7 @@ UNX511 -- Assignment 1: A Network Monitor
 
 *Submission Deadline: Sunday, July 10, 2022 by 11:59pm*
 
-**[Business Case]{.ul} (Marketing, Project Manager, Senior Executives)**
+**[Business Case] (Marketing, Project Manager, Senior Executives)**
 
 Your job will be to create a network monitor, which monitors the
 performance of all network interface devices. Monitoring network
@@ -16,7 +16,7 @@ many as 64 network interfaces, some of them running in the order of
 crucial to know the performance of each interface and to control each
 interface, therefore we are going to create a network monitor.
 
-**[Requirements]{.ul} (Marketing, Project Manager, Project Lead)**
+**[Requirements] (Marketing, Project Manager, Project Lead)**
 
 > 1.Our network monitor must be able to monitor any set of network
 > interfaces requested by the user.
@@ -43,7 +43,7 @@ interface, therefore we are going to create a network monitor.
 ![](readme_src/media/image1.png){width="6.468055555555556in"
 height="4.175in"}
 
-**[Implementation]{.ul} (Junior and Senior Engineers)**
+**[Implementation] (Junior and Senior Engineers)**
 
 > •The network monitor will communicate with each of its interface
 > monitors through a socket file in the **/tmp** directory.
@@ -114,131 +114,3 @@ to
 >
 > ![](readme_src/media/image2.png){width="6.5in"
 > height="7.1875in"}
-
-**[Questions]{.ul}**
-
-> 1.In a few sentences, describe the general architecture of your
-> interface monitor.
->
-> \[0.5 mark\]
->
-> 2.In a few sentences, describe the general architecture of your
-> network monitor.
->
-> \[0.5 mark\]
->
-> 3.Could the interface monitor and network monitor all be contained
-> within one
->
-> process, if so how? \[0.5 mark\]
->
-> 4.Could the interface monitor and network monitor all be contained
-> within one process, assuming 128 network interfaces running at several
-> Giga-bits per second, which require a polling interval of one
-> millisecond per interface. \[0.5 mark\]\
-> 5.What is a software defined network? In doing so, describe the
-> applications layer, the control layer, and the forwarding layer. \[2
-> marks\]
-
-**[Timeline]{.ul}**
-
-**Days 1-7:** Complete and test the interface monitor as a stand-alone
-unit.
-
-**Days 8-14:** Complete the network monitor with socket interface to the
-interface monitor.
-
-**Days 15-21:** Test and Rework. Answer Questions. Submit Assignment.
-
-**[Marking Rubric]{.ul}**
-
-Assignment 1 is worth 15% of your final grade and as such is marked out
-of 15 as follows:
-
-+--------------------------------------------+
-| > Contains header\                         |
-| > documentation for all files and for all\ |
-| > functions within each file. Documents\   |
-| > unclear code.                            |
-+============================================+
-|                                            |
-+--------------------------------------------+
-
-  --
-  --
-
-  --
-  --
-
-  --
-  --
-
-  --
-  --
-
-  --
-  --
-
-  --
-  --
-
-  --
-  --
-
-  --
-  --
-
-  --
-  --
-
-  --
-  --
-
-  --
-  --
-
-  --
-  --
-
-  --
-  --
-
-  --
-  --
-
-  --
-  --
-
-  --
-  --
-
-  --
-  --
-
-+----------+---+----------+---+----------+---+----------+---+----------+
-| > **Q    |   | >        |   | >        |   | >        |   | >        |
-| uestions |   |  Answers |   |  Answers |   |  Answers |   |  Answers |
-| > (4     |   | > no     |   | > some\  |   | > most\  |   | > all    |
-| >        |   | > q      |   | > q      |   | > q      |   | > Q      |
-| marks)** |   | uestion\ |   | uestions |   | uestions |   | uestions |
-|          |   | > c      |   | > c      |   | > c      |   | > c      |
-|          |   | orrectly |   | orrectly |   | orrectly |   | orrectly |
-+==========+===+==========+===+==========+===+==========+===+==========+
-|          |   |          |   |          |   |          |   |          |
-+----------+---+----------+---+----------+---+----------+---+----------+
-
-**[Submission]{.ul}**
-
-Please submit via email: networkMonitor, interfaceMonitor, Makefile, and
-a Microsoft Word document contains answers to questions.
-
-**[Late Policy]{.ul}**
-
-You will be docked 10% if your assignment is submitted 1-2 days late.
-
-You will be docked 20% if your assignment is submitted 3-4 days late.
-
-You will be docked 30% if your assignment is submitted 5-6 days late.
-
-You will be docked 40% if your assignment is submitted 7 days late. You
-will be docked 50% if your assignment is submitted over 7 days late.
