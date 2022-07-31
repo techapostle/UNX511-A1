@@ -72,9 +72,9 @@ int set_if_up(char *ifname, short flags) {
 void getInterfaceStat(char *interface, std::string &data) {
   std::string operstate;
   char stat_path[MAX_BUFFER*2];
-  int carrier_up_count;
-  int tx_bytes, tx_packets, tx_dropped, tx_errors;
-  int rx_bytes, rx_packets, rx_dropped, rx_errors;
+  int carrier_up_count = 0;
+  int tx_bytes = 0, tx_packets = 0, tx_dropped = 0, tx_errors = 0;
+  int rx_bytes = 0, rx_packets = 0, rx_dropped = 0, rx_errors = 0;
   std::ifstream infile;
 
   sprintf(stat_path, "/sys/class/net/%s/operstate", interface);
