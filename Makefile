@@ -1,5 +1,5 @@
-FILE1=IntMon.cpp
-FILE2=NetMon.cpp
+FILE1=./src/IntMon.cpp
+FILE2=./src/NetMon.cpp
 
 networkMon: $(FILE2)
 	g++ $(FILE2) -o $@
