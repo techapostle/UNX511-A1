@@ -38,8 +38,7 @@ interface, therefore we are going to create a network monitor.
 > The number of erroneous received bytes -- **rx_errors**\
 > The number of received packets -- **rx_packets**
 
-![](readme_src/media/image1.png){width="6.468055555555556in"
-height="4.175in"}
+![](readme_src/media/image1.png)
 
 **[Implementation] (Junior and Senior Engineers)**
 
@@ -110,5 +109,4 @@ to
 >
 > •A correctly running network monitor will look something like:
 >
-> ![](readme_src/media/image2.png){width="6.5in"
-> height="7.1875in"}
+> ![](readme_src/media/image2.png)
