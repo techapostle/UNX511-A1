@@ -5,7 +5,7 @@
 *  ╰──────────────────────────────────╯
 */
 
-/* --- Linux Network Monitor ---
+/* --- Network Interface Monitor: Network ---
  * This unit contains the main function of the Network Monitor portion of the assignment.
 */
 
@@ -25,8 +25,6 @@
 // Project Libraries
 #include "utils.cpp"
 
-using namespace nimutils;
-
 int main() {
   struct sockaddr_un addr; // Create a socket for inter-process communication.
   int numInterfaces = 1; // Default number of interfaces
@@ -40,7 +38,7 @@ int main() {
 
   // Signal Handling
   struct sigaction action;
-  action.sa_handler = signalHandler;
+  action.sa_handler = nimutils::signalHandler;
   sigemptyset(&action.sa_mask);
   action.sa_flags = 0;
   sigaction(SIGINT, &action, NULL);
@@ -89,8 +87,8 @@ int main() {
       FD_ZERO(&active_fd_set);
       FD_SET(master_fd, &active_fd_set); // Add master_fd to socket set
       max_fd = master_fd; // Select from max_fd sockets
-      terminate_NM = false;
-      while (!terminate_NM) {
+      nimutils::terminate_NM = false;
+      while (!nimutils::terminate_NM) {
         read_fd_set = active_fd_set; // Block until an input arrives on a socket
         ret = select(max_fd+1, &read_fd_set, NULL, NULL, NULL); // Select from up to max_fd+1 sockets
         if (ret < 0) {
