@@ -10,4 +10,4 @@ networkMon: $(FILE1)
 all: networkMon interfaceMon
 
 clean:
-	rm networkMon interaceMon
+	rm networkMon interfaceMon
