@@ -68,7 +68,7 @@ int main() {
     for (int i = 0; i < numInterfaces; i++) {
       if (fork() == 0) {
         std::cout << interfaces[i] << std::endl;
-        execlp("./IntMon", "./IntMon", interfaces[i].c_str(), NULL);
+        execlp("./interfaceMon", "./interfaceMon", interfaces[i].c_str(), NULL);
       }
     }
   } else {
@@ -105,7 +105,7 @@ int main() {
               len = sprintf(buffer, "Monitor") + 1;
               ret = write(clients[numClients], buffer, BUFFER_SIZE);
               if (ret == -1) {
-                std::cout << "Network Monitor: Write Error\n" 
+                std::cout << "Network Monitor: Write Error\n"
                   << strerror(errno) << std::endl;
               }
               if (max_fd < clients[numClients]) max_fd = clients[numClients];
@@ -118,7 +118,7 @@ int main() {
                 ret = read(clients[i], buffer, BUFFER_SIZE); // Read data from clients[i]
                 std::cout << buffer;
                 if (ret == -1) {
-                  std::cout << "Network Monitor: Read Error\n" 
+                  std::cout << "Network Monitor: Read Error\n"
                     << strerror(errno) << std::endl;
                 }
               }
@@ -133,7 +133,7 @@ int main() {
         len = sprintf(buffer, "Quit") + 1;
         ret = write(clients[i], buffer, len);
         if (ret == -1) {
-          std::cout << "Network Monitor: Write Error\n" 
+          std::cout << "Network Monitor: Write Error\n"
             << strerror(errno) << std::endl;
         }
         sleep(1);
