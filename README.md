@@ -1,7 +1,5 @@
 UNX511 -- Assignment 1: A Network Monitor
 
-*Submission Deadline: Sunday, July 10, 2022 by 11:59pm*
-
 **[Business Case] (Marketing, Project Manager, Senior Executives)**
 
 Your job will be to create a network monitor, which monitors the
