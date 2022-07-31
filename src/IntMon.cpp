@@ -13,16 +13,9 @@
 #include <iostream>
 #include <string>
 #include <cstring>
-#include <fstream>
 // Linux Libraries
-#include <sys/types.h>
-#include <sys/wait.h>
 #include <sys/socket.h>
-#include <sys/ioctl.h>
 #include <sys/un.h>
-#include <net/if.h>
-#include <signal.h>
-#include <fcntl.h>
 #include <unistd.h>
 // My Libraries
 #include "utils.cpp"

@@ -10,18 +10,15 @@
 */
 
 // STL
-#include <csignal>
 #include <cstdio>
 #include <iostream>
-#include <vector>
 #include <string>
 // Linux Libraries
 #include <sys/socket.h>
-#include <sys/types.h>
 #include <sys/un.h>
 #include <sys/wait.h>
-#include <unistd.h>
 #include <signal.h>
+#include <unistd.h>
 // Project Libraries
 #include "utils.cpp"
 
