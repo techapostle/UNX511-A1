@@ -1,4 +1,4 @@
-/* ╭──────────────────────────────────╮
+/*  ╭──────────────────────────────────╮
  *  │ Name: Kian Dadkhah Shokrollahi   │
  *  │ SID: 119369205                   │
  *  │ UNX511 Assignment 1              │
@@ -34,6 +34,14 @@ int main() {
   fd_set active_fd_set;
   fd_set read_fd_set;
 
+  std::cout << "How many interfaces do you wish to monitor?" << std::endl;
+  std::cin >> numInterfaces;
+  interfaces = new std::string[numInterfaces];
+  for (int i = 0; i < numInterfaces; i++) {
+    std::cout << "\nInterface " << i + 1 << " name: ";
+    std::cin >> interfaces[i];
+  }
+
   // Signal Handling
   struct sigaction action;
   action.sa_handler = nimutils::signalHandler;
@@ -57,14 +65,6 @@ int main() {
     std::cout << "Server: " << strerror(errno) << std::endl;
     close(master_fd);
     exit(-1);
-  }
-
-  std::cout << "How many interfaces do you wish to monitor?" << std::endl;
-  std::cin >> numInterfaces;
-  interfaces = new std::string[numInterfaces];
-  for (int i = 0; i < numInterfaces; i++) {
-    std::cout << "\nInterface " << i + 1 << " name: ";
-    std::cin >> interfaces[i];
   }
 
   if (fork() == 0) {
